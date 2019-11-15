@@ -18,13 +18,31 @@ public class Google_Results_Title {
 
         ArrayList<String> wordsToSearch = new ArrayList<>(Arrays.asList("Java", "JUnit", "Selenium"));
 
+        for (int i = 0; i <wordsToSearch.size() ; i++) {
+
         driver.get("https://www.google.com/");
         WebElement searchbox = driver.findElement(By.name("q"));
-        searchbox.sendKeys("Java");
-        WebElement searchButton= driver.findElement(By.cssSelector("input[value='Google Search']"));
-        searchButton.click();
+        searchbox.sendKeys(wordsToSearch.get(i));
+
+        Thread.sleep(2000);
+
+        driver.findElement(By.id("lga")).click();
+        Thread.sleep(1000);
+
+        driver.findElement(By.xpath("(//input[@class='gNO89b'])[2]")).click();
+
+        String firstURL = driver.findElement(By.xpath("//a/div/cite")).getText();
+
+        driver.findElement(By.xpath("//a/h3/span")).click();
+        String secondURL = driver.getCurrentUrl();
+        Thread.sleep(2000);
+        VerifyEquals(firstURL, secondURL);
 
         driver.navigate().back();
+        Thread.sleep(2000);
+
+        }
+
 
         driver.quit();
 
