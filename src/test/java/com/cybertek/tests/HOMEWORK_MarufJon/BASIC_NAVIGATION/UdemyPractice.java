@@ -10,7 +10,7 @@ public class UdemyPractice {
 
     @Test
 
-    public void login() {
+    public void login() throws InterruptedException {
 
         WebDriver driver = WebDriverFactory.getDriver("chrome");
         driver.get("https://login.salesforce.com/");
@@ -24,6 +24,8 @@ public class UdemyPractice {
         String actualErrorMessage = driver.findElement(By.id("error")).getText();
 
         Assert.assertEquals(actualErrorMessage, expectedErrorMessage);
+
+        Thread.sleep(2000);
 
         driver.quit();
 
