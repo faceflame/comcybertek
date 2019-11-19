@@ -3,6 +3,7 @@ package com.cybertek.tests.HOMEWORK_And_Practice.TESTNG;
 import com.cybertek.utilities.WebDriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -13,15 +14,14 @@ public class VerifySignUp_ConfirmationEmail {
 
     private WebDriver driver;
 
-    @BeforeMethod(description = "Setup the browder")
+    @BeforeMethod(description = "Setup the browser")
     public void setUp() {
         driver = WebDriverFactory.getDriver("chrome");
-
 
     }
 
     @Test(description = "Verify successful signup", priority = 1)
-    public void test1() {
+    public void test1() throws InterruptedException {
         driver.get("https://www.tempmailaddress.com/");
         //copy and save email on the page as a String
         String email = driver.findElement(By.id("email")).getText();
@@ -39,18 +39,29 @@ public class VerifySignUp_ConfirmationEmail {
         //find actual signup message and store in a String
         String actualSignupMessage = driver.findElement(By.name("signup_message")).getText();
 
-       Assert.assertEquals(actualSignupMessage, expectedSignupMessage, "The actual successful signup message does not match");
+        Assert.assertEquals(actualSignupMessage, expectedSignupMessage, "The actual successful signup message does not match");
         //got back to the first page
-        driver.navigate().back();
-        driver.navigate().back();
 
-        driver.findElement(By.cssSelector("tr>td.from")).click();
-        //Expected sender of first message
+        System.out.println(email);
+
+        Thread.sleep(1000);
+        driver.navigate().back();
+        Thread.sleep(2000);
+        driver.navigate().back();
+        driver.navigate().back();
+        Thread.sleep(1000);
+
+        //Clicks on the first email sent to this address
+        driver.findElement(By.id("schranka")).click();
+        Thread.sleep(1000);
+
+
+//Expected sender of first message
         String expectedEMailSender = "do-not-reply@practice.cybertekschool.com";
-        //find first message sent to this email by ..., and store its text
-        String actualReceivedEmail =driver.findElement(By.id("odesilatel")).getText();
+        String actualEmailSender = driver.findElement(By.id("odesilatel")).getText();
 
-        Assert.assertEquals(actualReceivedEmail, expectedEMailSender, "Actual sender of the email is " + actualReceivedEmail);
+        //Verifies the email address of the sender of the first message
+        Assert.assertEquals(actualEmailSender, expectedEMailSender, "Actual sender of the email is " + actualEmailSender);
 
 
     }
