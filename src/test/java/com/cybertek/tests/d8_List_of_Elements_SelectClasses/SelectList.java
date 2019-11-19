@@ -18,9 +18,9 @@ public class SelectList {
 
         driver.get("http://practice.cybertekschool.com/dropdown");
 
-        WebElement element = driver.findElement(By.id("state"));
+        WebElement state = driver.findElement(By.id("state"));
 
-        Select states = new Select(element);
+        Select states = new Select(state);
 
         List<WebElement> options = states.getOptions();
 

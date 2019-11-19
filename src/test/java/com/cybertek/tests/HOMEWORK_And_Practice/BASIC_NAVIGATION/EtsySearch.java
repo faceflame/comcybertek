@@ -1,11 +1,9 @@
-package com.cybertek.tests.HOMEWORK_MarufJon.BASIC_NAVIGATION;
+package com.cybertek.tests.HOMEWORK_And_Practice.BASIC_NAVIGATION;
 
 import com.cybertek.utilities.WebDriverFactory;
 import com.github.javafaker.Faker;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.testng.Assert;
 
 public class EtsySearch {
 

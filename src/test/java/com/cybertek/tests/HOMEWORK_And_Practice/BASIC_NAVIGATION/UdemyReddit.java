@@ -1,13 +1,10 @@
-package com.cybertek.tests.HOMEWORK_MarufJon.BASIC_NAVIGATION;
+package com.cybertek.tests.HOMEWORK_And_Practice.BASIC_NAVIGATION;
 
 import com.cybertek.utilities.WebDriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class UdemyReddit {
 

@@ -1,4 +1,4 @@
-package com.cybertek.tests.HOMEWORK_MarufJon.BASIC_NAVIGATION;
+package com.cybertek.tests.HOMEWORK_And_Practice.BASIC_NAVIGATION;
 
 import com.cybertek.utilities.WebDriverFactory;
 import org.openqa.selenium.By;
@@ -30,17 +30,6 @@ public class ButtonsClickTest {
 driver.quit();
     }
 
-    public static void main(String[] args) {
-        String a= "SALAM";
-        String reverse="";
-
-        for (int i = a.length()-1; i >=0 ; i--) {
-            reverse+= "" + a.charAt(i);
-
-        }
-
-        System.out.println(reverse);
-    }
 
 
 }
