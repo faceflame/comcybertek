@@ -56,12 +56,18 @@ public class VerifySignUp_ConfirmationEmail {
         Thread.sleep(1000);
 
 
-//Expected sender of first message
+        //Expected sender of first message
         String expectedEMailSender = "do-not-reply@practice.cybertekschool.com";
         String actualEmailSender = driver.findElement(By.id("odesilatel")).getText();
 
         //Verifies the email address of the sender of the first message
         Assert.assertEquals(actualEmailSender, expectedEMailSender, "Actual sender of the email is " + actualEmailSender);
+
+        //Expected subject of the first email
+        String expectedEmailSubject="Thanks for subscribing to practice.cybertekschool.com!";
+        String actualEmailSubject= driver.findElement(By.id("predmet")).getText();
+
+        Assert.assertEquals(expectedEmailSubject, actualEmailSubject, "Email subject is not correct");
 
 
     }

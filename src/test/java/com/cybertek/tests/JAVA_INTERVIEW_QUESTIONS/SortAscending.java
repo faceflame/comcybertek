@@ -8,10 +8,14 @@ Write a return method that can sort an int array in Ascending order without usin
 public class SortAscending {
     public static void main(String[] args) {
 
+
         int arr []= {1,6,7,-3};
          SortAscending (arr);
 
-        for (int i = 0; i <arr.length; i++) {
+         Arrays.sort(arr);
+
+
+        for (int i = 0; i >arr.length; i++) {
             for (int j = 0; j <arr.length; j++) {
 
                 if (arr[i]<arr[j]){
@@ -37,7 +41,7 @@ It3:  arr[i=0]=6
                         int arr []= {7, 1, 6, -3};
                 index positions      0  1  2   3
 
-It4:  arr[i=0]=7
+It4:  arr[i=0]=7///NO SWAP HAPPENS
             arr[j=3]=-3
                         temp=6, arr[i=0]=7, arr[j=2]=6,
                         int arr []= {7, 1, 6, -3};
@@ -50,8 +54,8 @@ It5:  arr[i=1]=1
                         int arr []= {1, 7, 6, -3};
                 index positions      0  1  2   3
 
-It5:  arr[i=1]=7
-            arr[j=1]=7
+It5:  arr[i=1]=1
+            arr[j=0]=7
                         temp=1, arr[i=1]=7, arr[j=0]=1,
                         int arr []= {1, 7, 6, -3};
                 index positions      0  1  2   3
@@ -136,15 +140,18 @@ It11:  arr[i=3]=6
         for (int i = 0; i <arr.length; i++) {
             for (int j = 0; j <arr.length; j++) {
 
-                if (arr[i]<arr[j]){
-                    int temp= arr [i];
-                    arr[i]=arr[j];
-                    arr[j]=temp;
+                if (arr[i]<arr[j]){ //to create the condition to compare the values at index positions "i" and "j" of the Array
+                    int temp= arr [i];  //temp holds the value at the index position of "i" when 'if' condition is  met
+                    arr[i]=arr[j];//value at index position "i" is swapped with the value at index position "j"
+                    arr[j]=temp;//value at the index position "j" assigned to temp
                 }
-            }
-        }
+            }//after each iteration, a comparison is made. Once the condition is met, the smaller value is shifted to the left.
+        }        //in other words, the smaller value is moved to the smaller index number of Array (starting from 0)
 
-        System.out.println(Arrays.toString(arr));
+        //Arrays is sorted from smaller values to the greater values
+        //Please note that for ascending order, all we need ot do is to change "<" into ">"
+
+                System.out.println(Arrays.toString(arr));
 
         return arr;
     }
