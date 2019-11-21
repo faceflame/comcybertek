@@ -1,7 +1,6 @@
-package com.cybertek.tests.d10_Frames;
+package com.cybertek.tests.d10_Frames_Actions_JavaScriptExecutor;
 
 import com.cybertek.utilities.WebDriverFactory;
-import com.google.gson.internal.$Gson$Preconditions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
