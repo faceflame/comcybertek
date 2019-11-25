@@ -1,6 +1,5 @@
-package com.cybertek.tests.HOMEWORK_And_Practice.DROPDOWN;
+package com.cybertek.tests.HOMEWORK_And_Practice.ENDTOEND;
 
-import com.cybertek.tests.d8_List_of_Elements_SelectClasses.DropdownListNotSelecttagTest;
 import com.cybertek.utilities.WebDriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -11,12 +10,9 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class SpiceJet {
+public class EndToEnd {
     private WebDriver driver;
 
     @BeforeMethod
@@ -31,8 +27,11 @@ public class SpiceJet {
     @Test(description = "Verify Successful Reservation", priority = 1)
     public void test1() throws InterruptedException {
 
-        //finds the list of cities in the dropdown for departures and selects Bagdogra
+        WebElement roundtripButton = driver.findElement(By.id("ctl00_mainContent_rbtnl_Trip_1"));
+        roundtripButton.click();
+        Assert.assertTrue(roundtripButton.isSelected());
 
+        //finds the list of cities in the dropdown for departures and selects Bagdogra
         driver.findElement(By.xpath("//span[@id='ctl00_mainContent_ddl_originStation1_CTXTaction']")).click();
         driver.findElement(By.cssSelector("[text='Bagdogra (IXB)']")).click();
 
@@ -85,13 +84,17 @@ public class SpiceJet {
     public void test2() {
 
 
-        int size=driver.findElements(By.cssSelector("[type='checkbox']")).size();
+        int size = driver.findElements(By.cssSelector("[type='checkbox']")).size();
         System.out.println(size);
 
     }
 
     @AfterMethod
     public void tearDown() {
+
         driver.quit();
     }
 }
+
+
+
