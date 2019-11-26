@@ -38,7 +38,7 @@ public class Driver {
 
             }
         }
-
+//if webdriver object is created, you can use it
         return driver;
     }
 
