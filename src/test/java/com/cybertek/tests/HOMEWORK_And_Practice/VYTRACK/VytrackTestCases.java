@@ -14,8 +14,10 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.yaml.snakeyaml.util.UriEncoder;
+import sun.security.provider.DRBG;
 
 import javax.swing.*;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class VytrackTestCases {
@@ -26,12 +28,19 @@ public class VytrackTestCases {
 
     @BeforeMethod
     public void setDriver() throws InterruptedException {
-         driver = WebDriverFactory.getDriver("chrome");
+        driver = WebDriverFactory.getDriver("chrome");
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
         driver.get(URL);
         //Login
         driver.findElement(By.id("prependedInput")).sendKeys(username);
         driver.findElement(By.id("prependedInput2")).sendKeys(password);
         driver.findElement(By.name("_submit")).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("(//a/span[@class='title title-level-1'])[5]"))));
+
     }
 
     @Test
@@ -64,9 +73,6 @@ public class VytrackTestCases {
     @Test
     public void test2() throws InterruptedException {
 
-
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("(//a/span[@class='title title-level-1'])[5]"))));
 //Hover over Activities Tab and move to it
         Actions actions = new Actions(driver);
         WebElement ActivitiesTab = driver.findElement(By.xpath("(//a/span[@class='title title-level-1'])[5]"));
@@ -76,14 +82,54 @@ public class VytrackTestCases {
         actions.moveToElement(CalanderEventsTab).build().perform();
         //Find page number button get the value of it
 
+
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
-        WebElement pageNum=driver.findElement(By.xpath("//input[@class='input-widget']"));
-        String ActualnumOfPage=pageNum.getAttribute("value");
-        String ExpectednumOfPage= "1";
+        WebElement pageNum = driver.findElement(By.xpath("//input[@class='input-widget']"));
+        String ActualnumOfPage = pageNum.getAttribute("value");
+        String ExpectednumOfPage = "1";
 
         Assert.assertEquals(ActualnumOfPage, ExpectednumOfPage);
+    }
 
+    @Test
+    public void test3() throws InterruptedException {
+        Actions actions = new Actions(driver);
+        //Activiies tab
+        WebElement ActivitiesTab = driver.findElement(By.xpath("(//a/span[@class='title title-level-1'])[5]"));
+        actions.moveToElement(ActivitiesTab).build().perform();
+        //Hover over Calander Events and move to it
+        WebElement CalanderEventsTab = driver.findElement(By.xpath("//span[contains(text(), 'Calendar Event')]"));
+        actions.moveToElement(CalanderEventsTab).build().perform();
+
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+        WebElement Nums = driver.findElement(By.cssSelector("[class='btn dropdown-toggle ']"));
+        String actualNum = Nums.getText();
+        String expectedNum = "25";
+
+        Assert.assertEquals(actualNum, expectedNum);
+    }
+
+    @Test
+    public void test4(){
+        Actions actions = new Actions(driver);
+        //Activiies tab
+        WebElement ActivitiesTab = driver.findElement(By.xpath("(//a/span[@class='title title-level-1'])[5]"));
+        actions.moveToElement(ActivitiesTab).build().perform();
+        //Hover over Calander Events and move to it
+        WebElement CalanderEventsTab = driver.findElement(By.xpath("//span[contains(text(), 'Calendar Event')]"));
+        actions.moveToElement(CalanderEventsTab).build().perform();
+
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+        List<WebElement>rows=driver.findElements(By.xpath("//table[@class='grid table-hover table table-bordered table-condensed']/tbody/tr"));
+        String RowsNum=  ""+rows.size();
+        System.out.println(RowsNum);
+        String RecordsNum=driver.findElement(By.xpath("//label[contains(text(), 'Tota')]")).getText();
+        System.out.println(RecordsNum);
+
+        Assert.assertTrue(RecordsNum.contains(RowsNum));
 
 
     }
