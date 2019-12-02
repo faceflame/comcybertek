@@ -20,10 +20,10 @@ import javax.swing.*;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class VytrackTestCases {
+public class VytrackTestCasesI1_4 {
     private WebDriver driver;
     String URL = "https://qa2.vytrack.com/";
-    String username = "storemanager85";
+    String username = "storemanager60";
     String password = "UserUser123";
 
     @BeforeMethod
@@ -55,7 +55,7 @@ public class VytrackTestCases {
         actions.moveToElement(ActivitiesTab).build().perform();
         Thread.sleep(3000);
 
-        //Move to Calender Events
+        //Move to Calender Events and click
         WebElement calendarActTab = driver.findElement(By.xpath("//a/span[contains(text(), 'Calendar Events')]"));
         actions.moveToElement(calendarActTab).build().perform();
         calendarActTab.click();
@@ -112,24 +112,34 @@ public class VytrackTestCases {
     }
 
     @Test
-    public void test4(){
+    public void test4() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebElement ActivitiesTab = driver.findElement(By.xpath("//a/span[contains(text(), 'Acti')]"));
+        wait.until(ExpectedConditions.elementToBeClickable(ActivitiesTab));
+
+        //Move to Activities Tab
         Actions actions = new Actions(driver);
-        //Activiies tab
-        WebElement ActivitiesTab = driver.findElement(By.xpath("(//a/span[@class='title title-level-1'])[5]"));
         actions.moveToElement(ActivitiesTab).build().perform();
-        //Hover over Calander Events and move to it
-        WebElement CalanderEventsTab = driver.findElement(By.xpath("//span[contains(text(), 'Calendar Event')]"));
-        actions.moveToElement(CalanderEventsTab).build().perform();
+        Thread.sleep(3000);
+
+        //Move to Calender Events
+        WebElement calendarActTab = driver.findElement(By.xpath("//a/span[contains(text(), 'Calendar Events')]"));
+        actions.moveToElement(calendarActTab).build().perform();
+        calendarActTab.click();
+
+        Thread.sleep(2000);
+
+        List<WebElement>rows=driver.findElements(By.xpath("//table[@class='grid table-hover table table-bordered table-condensed']/tbody/tr"));
+        String RowsNum=  "Total Of "+rows.size() + " Records";
+        System.out.println(RowsNum);
 
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
-        List<WebElement>rows=driver.findElements(By.xpath("//table[@class='grid table-hover table table-bordered table-condensed']/tbody/tr"));
-        String RowsNum=  ""+rows.size();
-        System.out.println(RowsNum);
-        String RecordsNum=driver.findElement(By.xpath("//label[contains(text(), 'Tota')]")).getText();
+
+        String RecordsNum=driver.findElement(By.xpath("//label[contains(text (), 'Total of')]")).getText();
         System.out.println(RecordsNum);
 
-        Assert.assertTrue(RecordsNum.contains(RowsNum));
+        Assert.assertEquals(RecordsNum, RowsNum);
 
 
     }
