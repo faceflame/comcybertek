@@ -9,6 +9,7 @@ public class AmazonTests {
     public static void main(String[] args) {
 //BookdetailsGit reset —hard orgigin master
         bookDetailsTest();
+ //Now again       
     }
 
     private static void bookDetailsTest() {
