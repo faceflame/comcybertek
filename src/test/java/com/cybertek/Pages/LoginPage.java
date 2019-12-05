@@ -22,6 +22,8 @@ public class LoginPage extends BasePage{
         PageFactory.initElements(Driver.get(), this);
     }
 
+
+
     @FindBy(id="prependedInput")
     public WebElement userName;
 
