@@ -10,7 +10,8 @@ public class AmazonTests {
 
         bookDetailsTest();
  //Now again       
-    }
+/*
+*/}
 
     private static void bookDetailsTest() {
         WebDriver driver= WebDriverFactory.getDriver("chrome");
