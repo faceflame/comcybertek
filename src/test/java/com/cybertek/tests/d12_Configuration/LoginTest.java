@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 public class LoginTest extends TestBase {
 
 
-    @Ignore
+
     @Test
     public void test1() throws InterruptedException {
         String url= ConfigurationReader.get("url");
