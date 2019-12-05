@@ -9,6 +9,7 @@ public class AmazonTests {
     public static void main(String[] args) {
 
         bookDetailsTest();
+ //Now again       
     }
 
     private static void bookDetailsTest() {
