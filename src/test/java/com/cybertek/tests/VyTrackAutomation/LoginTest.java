@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 //By extension we can Before and After methods from TestBase class
 
 //This class will be dedicated to Login only.
-public class LoginTest extends BasePage {
+public class LoginTest extends TestBase {
 
     @Test(description = "Verify page title after login is 'Dashboard'")
     public void test1() throws InterruptedException {
@@ -22,7 +22,7 @@ public class LoginTest extends BasePage {
         WebDriverWait wait= new WebDriverWait(Driver.get(), 10);
         wait.until(ExpectedConditions.titleIs("Dashboard"));
 
-        Assert.assertEquals(Driver.get().getTitle(), "Dashboard");
+        Assert.assertEquals(driver.getTitle(), "Dashboard");
 
     }
     
